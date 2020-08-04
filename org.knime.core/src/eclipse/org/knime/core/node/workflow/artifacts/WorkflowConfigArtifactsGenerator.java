@@ -208,6 +208,10 @@ public class WorkflowConfigArtifactsGenerator extends WorkflowSaveHook {
     private static void extractWorkflowCredentials(final WorkflowManager wfm, final JsonObjectBuilder builder) {
         Iterable<Credentials> credentials = wfm.getCredentialsStore().getCredentials();
         for (Credentials c : credentials) {
+            if (c.getName().equals(CoreConstants.CREDENTIALS_KNIME_SYSTEM_DEFAULT_ID)) {
+                continue;
+            }
+
             JsonObjectBuilder val = Json.createObjectBuilder();
             val.add("type", "object");
             JsonObjectBuilder login = Json.createObjectBuilder();

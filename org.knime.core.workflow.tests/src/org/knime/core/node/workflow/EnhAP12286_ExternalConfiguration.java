@@ -144,7 +144,9 @@ public class EnhAP12286_ExternalConfiguration extends WorkflowTestCase {
             containsString("password"));
         assertThat("unexpected file content", workflowConfigContent,
             containsString(CoreConstants.WORKFLOW_CREDENTIALS + "test2"));
-    }
+		assertFalse("unexpected workflow credentials",
+				workflowConfigContent.contains(CoreConstants.CREDENTIALS_KNIME_SYSTEM_DEFAULT_ID));
+	}
 
     /**
      * Tests the {@link WorkflowManager#getConfigurationNodes()} and
